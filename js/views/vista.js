@@ -1,22 +1,17 @@
 export class Vista {
+  static vinicio = Symbol('Inicio')
+  static vportada = Symbol('Portada')
 
-    static {
-      Vista.vinicio = Symbol('Inicio')
-      Vista.vlistarautores = Symbol('Listar Autores')
-      Vista.vlistarlibros = Symbol('Listar Libros')
-      Vista.vInsertarLibros = Symbol('Insertar Libros')
-
-    }
-  
-    constructor(controlador, base) {
+  constructor(controlador, base) {
       this.controlador = controlador
       this.base = base
-    }
-  
-    mostrar(ver) {
-      if (ver)
-        this.base.style.display = 'block'
-      else 
-        this.base.style.display = 'none'
-    }
   }
+
+  mostrar(ver) {
+      if (ver) {
+          this.base.style.display = 'block'
+      } else {
+          this.base.style.display = 'none'
+      }
+  }
+}
