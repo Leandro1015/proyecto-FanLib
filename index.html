@@ -3,34 +3,75 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/estilo.css">
         <title>Proyecto FanLib</title>
     </head>
     <body>
+        <!-- Vista de la portada -->
         <div id="divPortada">
-            <img id="imagenPortada" src="ruta_de_la_imagen.jpg" alt="Portada">
+            <img id="imagenPortada" src="img/portada.avif" alt="Portada">
         </div>
+
+         <!-- Vista de inicio -->
         <div id="divInicio">
             <p>Menú principal</p>
             <button id="irLibros">Libros</button><!-- Te envia a la VistaListarLibros -->
             <button id="irAutores">Autores</button><!-- Te envia a la VistaListarAutores -->
         </div>
+
+        <!-- Vista para listar libros -->
         <div id="divListarLibros">
             <p>Listado de Libros</p>
             Aquí irá la lista de libros
-            <button id="aniadirLibro">Añadir libro</button><!-- Te envia a la VistaInsertarLibros -->
+            <button id="btnAnadirLibro">Añadir libro</button><!-- Te envia a la VistaInsertarLibros -->
             <button id="volverInicio">Volver atrás</button><!-- Te envia a la VistaMenuPrincipal -->
         </div>
+
+        <!-- Vista para insertar libros -->
         <div id="divInsertarLibros">
-            <p>Introducimos un nuevo libro por aquí</p>
+            <h2>Insertar Nuevo Libro</h2>
+            <form>
+                 <!-- Formulario para insertar un nuevo libro -->
+                <label for="titulo">Título:</label>
+                <input type="text" id="titulo" name="titulo" required><br>
+
+                <label for="autor">Autor:</label>
+                <input type="text" id="autor" name="autor" required><br>
+
+                <label for="año">Año:</label>
+                <input type="text" id="año" name="año" required><br>
+
+                <label for="ISBN">ISBN:</label>
+                <input type="text" id="ISBN" name="ISBN" required><br>
+
+                <button type="submit">Insertar Libro</button>
+            </form>
         </div>
+
+        <!-- Vista para listar autores -->
         <div id="divListarAutores">
             <p>Aquí se ve el listado de autores</p>
-            <button id="aniadirAutor">Añadir autor</button><!-- Te envia a la VistaInsertarAutores -->
+            <button id="anadirAutor">Añadir autor</button><!-- Te envia a la VistaInsertarAutores -->
             <button id="volverInicio">Volver atrás</button><!-- Te envia a la VistaMenuPrincipal -->
         </div>
-        <!-- <div id="divInsertarAutores">
-            <p>Introducimos un nuevo autor por aquí</p>
-        </div> -->
+
+        <!-- Vista para insertar autores -->
+        <div id="divInsertarAutores">
+            <h2>Insertar Nuevo Autor</h2>
+            <form>
+                <!-- Formulario para insertar un nuevo autor -->
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" required><br>
+        
+                <label for="nacionalidad">Nacionalidad:</label>
+                <input type="text" id="nacionalidad" name="nacionalidad" required><br>
+        
+                <label for="fechaNacimiento">Fecha de Nacimiento:</label>
+                <input type="date" id="fechaNacimiento" name="fechaNacimiento" required><br><br>
+        
+                <button type="submit">Insertar Autor</button>
+            </form>
+        </div>
         <script type="module" src="js/controlador.js"></script>
     </body>
 </html> 

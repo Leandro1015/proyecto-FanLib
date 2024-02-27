@@ -9,7 +9,6 @@ export class Inicio extends Vista {
         this.irLibros = this.base.querySelectorAll('button')[0]
         this.irAutores = this.base.querySelectorAll('button')[1]
 
-
         // Asociar eventos
         this.irLibros.onclick = this.pulsarIrLibros.bind(this)
         this.irAutores.onclick =  this.pulsarIrAutores.bind(this)
