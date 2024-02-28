@@ -6,7 +6,6 @@ import {AltaLibro} from './views/valtalibro.js'
 import {ListarLibros} from './views/vlistarlibros.js'
 import {ListarAutores} from './views/vlistarautores.js'
 class Controlador {
-
     vistas = new Map()
 
     constructor(){
@@ -34,7 +33,6 @@ class Controlador {
         }, 3000)
     }
 
-    
     // Método para cambiar la vista actual
     verVista(vista) {
         this.ocultarVistas()

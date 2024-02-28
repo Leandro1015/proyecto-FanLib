@@ -22,5 +22,4 @@ export class Inicio extends Vista {
     pulsarIrAutores () {
         this.controlador.verVista(Vista.vlistarautores)
     }
-
 }
