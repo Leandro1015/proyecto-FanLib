@@ -82,3 +82,19 @@ input[type="number"]:focus {
 #divInsertarLibros button[type="submit"]:hover {
     background-color: #ff8c33;
 }
+
+#errores{
+    display: none;
+}
+
+/* Estilos para los campos con respuestas incorrectas */
+.input-error {
+    border: 1px solid #ff0000;
+    box-shadow: 0 0 5px #ff0000;
+}
+
+/* Estilos para los campos con respuestas correctas */
+.input-correct {
+    border: 1px solid #e5a315;
+    box-shadow: 0 0 5px #e5a315;
+}
