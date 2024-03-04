@@ -1,4 +1,5 @@
 import { Vista } from './vista.js'
+import { Rest } from '../service/rest.js'
 export class AltaLibro extends Vista {
     /**
      * Constructor de la clase AltaLibro.
@@ -18,6 +19,8 @@ export class AltaLibro extends Vista {
         // Agregar evento de clic al botón "Insertar Libro"
         const botonInsertar = document.querySelector('#divInsertarLibros button')
         botonInsertar.addEventListener('click', this.validarFormulario.bind(this))
+
+        this.restService = new Rest()
     }
 
     /**
@@ -28,7 +31,7 @@ export class AltaLibro extends Vista {
         const divErrores = document.getElementById('errores')
         divErrores.innerHTML = ''
         divErrores.style.display = 'none' // Ocultar el div de errores inicialmente
-    
+
         // Realizar las validaciones
         if (this.titulo.value.trim().length < 4) {
             this.mostrarError('El título debe tener al menos 4 caracteres.')
@@ -70,6 +73,19 @@ export class AltaLibro extends Vista {
         }
     
         console.log('¡Has pulsado el botón "Insertar Libro"!')
+
+        // Construir el objeto con los atributos del formulario
+        const libro = {
+            titulo: this.titulo.value.trim(),
+            autor: this.autor.value.trim(),
+            anio: this.anio.value.trim(),
+            ISBN: this.ISBN.value.trim()
+        }
+
+        console.log('i wanna die')
+        this.restService.crearLibro(libro)
+
+        return libro;
     }
 
     /**

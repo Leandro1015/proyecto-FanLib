@@ -33,7 +33,10 @@ class Controlador {
         }, 3000)
     }
 
-    // Método para cambiar la vista actual
+    /**
+     * Método para cambiar la vista actual
+     * @param {string} vista - Nombre de la vista a mostrar
+    */
     verVista(vista) {
         this.ocultarVistas()
         this.vistas.get(vista).mostrar(true)
@@ -46,6 +49,7 @@ class Controlador {
     }
 }
 
+// Crear una instancia del controlador cuando se carga la página
 window.onload = () => { 
     new Controlador()
 }
