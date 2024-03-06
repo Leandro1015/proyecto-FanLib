@@ -36,4 +36,28 @@ CREATE TABLE Libros (
         "borrar_obra": "DELETE FROM Libros WHERE id IN (:id)",
         "listar_obra_basico": "SELECT * FROM Libros;"    
     }
-}*/
+}
+
+{
+    "campos": {
+        "Libros": {
+            "id": "SQLITE3_INTEGER",
+            "titulo": "SQLITE3_TEXT",
+            "anio_publicacion": "SQLITE3_TEXT",
+            "isbn": "SQLITE3_TEXT",
+            "portada": "SQLITE3_BLOB"
+        }
+    },
+    "sentencias": {
+        "insertar_obra": "INSERT INTO Libros (titulo, anio_publicacion, isbn) VALUES (:titulo, :anio_publicacion, :isbn);",
+       
+        "actualizar_obra": "UPDATE Libros SET titulo = :nuevoTitulo, anio_publicacion = :nuevoanio_publicacion, portada = :nuevaportada, id_autor = :nuevoid_autor;",
+        "borrar_obra": "DELETE FROM Libros WHERE id IN (:id)",
+        "listar_obra_basico": "SELECT * FROM Libros;"    
+    }
+}
+
+
+
+
+*/

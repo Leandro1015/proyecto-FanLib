@@ -47,6 +47,23 @@ export class Rest {
         }
     }
 
+    async listarObras() {
+        try {
+            const url = `${this.baseUrl}/obra`
+            const response = await fetch(url, {
+                method: 'GET',
+                headers: this.headers
+            });
+            
+            return this.handleResponse(response)
+        } 
+        catch (error) {
+            console.error('Error al obtener las obras:', error)
+            throw error
+        }
+    }
+    
+
    /* async borrarObra(id) {
         try {
             const url = `${this.baseUrl}/libro/${id.join('/')}`
