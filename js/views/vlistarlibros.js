@@ -12,28 +12,23 @@ export class ListarLibros extends Vista {
         this.irInicio.onclick = this.pulsarVolverInicio.bind(this)
 
         this.restService = new Rest()
+
+        this.mostrarLibros
     }
 
     mostrarLibros(libros) {
         console.log('holA')
-        console.log(this.restService.listarObras())
+        console.log(libros)
 
-        const divListarLibros = document.getElementById('divListarLibros')
-        divListarLibros.innerHTML = ''
-
-        // Crear un elemento ul para la lista de libros
-        const listaLibros = document.createElement('ul')
-
+        const listaLibros = document.getElementById('listaLibros')
+        listaLibros.innerHTML = ''
+    
         // Iterar sobre la lista de libros y agregar cada uno a la lista
         libros.forEach(libro => {
             const itemLibro = document.createElement('li')
             itemLibro.textContent = `${libro.titulo} - ${libro.anio_publicacion} - ISBN: ${libro.isbn}`
             listaLibros.appendChild(itemLibro)
         })
-
-        // Agregar la lista de libros al elemento divListarLibros
-        divListarLibros.appendChild(listaLibros)
-
     }
 
     pulsarAltaLibro() {
