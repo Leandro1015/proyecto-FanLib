@@ -21,12 +21,37 @@
 
         <div id="divListarLibros">
             <p>Listado de Libros</p>
-            <ul id="listaLibros">
-                <!-- Aquí se agregarán dinámicamente los libros -->
-            </ul>
+            <table id="tablaLibros">
+                <thead>
+                    <tr>
+                        <th>Título</th>
+                        <th>Año de Publicación</th>
+                        <th>ISBN</th>
+                    </tr>
+                <thead>
+                <tbody>
+                    <tr>
+                        <td>El Gran Gatsby</td>
+                        <td>1925</td>
+                        <td>9788491053</td>
+                    </tr>
+                    <tr>
+                        <td>Orgullo y prejuicio</td>
+                        <td>1813</td>
+                        <td>9788491051</td>
+                    </tr>
+                    <tr>
+                        <td>Cien años de soledad</td>
+                        <td>1967</td>
+                        <td>9788466343</td>
+                    </tr>
+                <tbody>
+            </table>
+            <br>
             <button id="btnAnadirLibro">Añadir libro</button><!-- Te envía a la VistaInsertarLibros -->
             <button id="volverInicio">Volver atrás</button><!-- Te envía a la VistaMenuPrincipal -->
         </div>
+        
 
         <!-- Vista para insertar libros -->
         <div id="divInsertarLibros">
