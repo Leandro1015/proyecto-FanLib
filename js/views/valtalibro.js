@@ -21,6 +21,9 @@ export class AltaLibro extends Vista {
         botonInsertar.addEventListener('click', this.validarFormulario.bind(this))
 
         this.restService = new Rest()
+
+        this.irLibros = this.base.querySelectorAll('button')[0]
+        this.irLibros.onclick = this.pulsarIrLibros.bind(this)
     }
 
     /**
@@ -100,4 +103,11 @@ export class AltaLibro extends Vista {
         mensajeError.textContent = mensaje
         divErrores.appendChild(mensajeError)
     } 
+
+    pulsarIrLibros () {
+        this.controlador.verVista(Vista.vlistarlibros)
+        this.verVista(Vista.vlistarlibros); // Cambiar a la vista ListarLibros
+    // Llamar al método listar en la vista ListarLibros para actualizar la lista de libros
+    this.vistas[Vista.vlistarlibros].listar();
+    }
 }
