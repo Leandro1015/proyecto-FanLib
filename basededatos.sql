@@ -57,7 +57,18 @@ CREATE TABLE Libros (
     }
 }
 
+ pulsarIrLibros() {
+        this.controlador.verVista(Vista.vlistarlibros)
+          // Obtener la instancia de ListarLibros desde el mapa de vistas
+        //const listarLibros = this.controlador.vistas.get(Vista.vlistarlibros)
 
+        // Llamar al método listar en la instancia de ListarLibros
+       // listarLibros.listar()
 
+        /*// Limpiar los campos del formulario
+        this.titulo.value = ''
+        this.anio_publicacion.value = ''
+        this.isbn.value = ''*/
+    }
 
 */

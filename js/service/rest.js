@@ -8,28 +8,6 @@ export class Rest {
         }
     }
 
-    //* Libro */
-    /*async getLibro() {
-        try {
-            const url = `${this.baseUrl}/libro`
-            const response = await fetch(url, {
-                method: 'GET',
-                headers: this.headers
-            })
-    
-            if (!response.ok) {
-                throw new Error(`Failed to fetch data. Status: ${response.status}`)
-            }
-    
-            const data = await response.json();
-                
-            return data
-        } catch (error) {
-            console.error('Error fetching data:', error)
-            return null
-        }
-    }*/
-
     async crearObra(obraData) {
         try {
             const url = `${this.baseUrl}/obra`
@@ -37,7 +15,7 @@ export class Rest {
             method: 'POST',
                 headers: this.headers,
                 body: JSON.stringify(obraData)
-            });
+            })
 
             return this.handleResponse(response)
         } 
@@ -53,7 +31,7 @@ export class Rest {
             const response = await fetch(url, {
                 method: 'GET',
                 headers: this.headers
-            });
+            })
             
             return this.handleResponse(response)
         } 
@@ -63,21 +41,21 @@ export class Rest {
         }
     }
 
-   /* async borrarObra(id) {
+    async borrarObra(id) {
         try {
-            const url = `${this.baseUrl}/libro/${id.join('/')}`
+            const url = `${this.baseUrl}/obra/${id}`;
             console.log(id)
             const response = await fetch(url, {
                 method: 'DELETE',
                 headers: this.headers
-            })
-
+            });
+    
             return this.handleResponse(response);
         } catch (error) {
-            console.error('Error:', error)
-            return null
+            console.error('Error:', error);
+            return null;
         }
-    }*/
+    }
 
     async handleResponse(response) {
         if (!response.ok) {

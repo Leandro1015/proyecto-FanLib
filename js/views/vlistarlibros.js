@@ -11,8 +11,39 @@ export class ListarLibros extends Vista {
         this.irInicio.onclick = this.pulsarVolverInicio.bind(this)
     
         this.restService2 = new Rest()
-
         this.listar()
+        
+        this.base.addEventListener('click', this.borrarLibro.bind(this));
+    }
+
+    async borrarLibro(evento) {
+        console.log('Entrando en borrarLibro');
+        const target = evento.target;
+        // Verificar si el clic fue en un botón de "Borrar"
+        if (target.classList.contains('btn-borrar')) {
+            const fila = target.closest('tr');
+            const titulo = fila.querySelector('.titulo').textContent;
+    
+            // Mostrar diálogo de confirmación de borrado
+            const confirmacion = confirm(`¿Estás seguro que deseas borrar el libro "${titulo}"?`);
+            if (confirmacion) {
+                try {
+                    // Obtener el ID del libro a borrar
+                    const id = fila.dataset.id;
+    
+                    // Realizar llamada AJAX-DELETE para borrar el libro
+                    await this.restService2.borrarObra(id);
+                    
+                    // Actualizar la lista de libros después de borrar
+                    this.listar();
+    
+                } catch (error) {
+                    console.error('Error al borrar el libro:', error);
+                    // Notificar al usuario sobre el error del servidor
+                    alert('Hubo un error al intentar borrar el libro. Por favor, inténtalo de nuevo más tarde.');
+                }
+            }
+        }
     }
 
     async listar() {
@@ -31,10 +62,16 @@ export class ListarLibros extends Vista {
 
     async mostrarLibros(obras) {
         const tablaLibros = document.getElementById('tablaLibros')
+        const tbody = tablaLibros.querySelector('tbody')
     
         try {
             // Parsear el JSON antes de usarlo
             const data = JSON.parse(obras)
+    
+            // Limpiar las filas de tbody antes de agregar nuevas filas
+            while (tbody.firstChild) {
+                tbody.removeChild(tbody.firstChild)
+            }
     
             // Iterar sobre la lista de obras y agregar cada una a la tabla
             data.forEach(obra => {
@@ -52,15 +89,22 @@ export class ListarLibros extends Vista {
                 const columnaISBN = document.createElement('td')
                 columnaISBN.textContent = obra.isbn
                 fila.appendChild(columnaISBN)
+
+                const columnaBorrar = document.createElement('td')
+                const botonBorrar = document.createElement('button')
+                botonBorrar.textContent = 'Borrar'
+                botonBorrar.classList.add('btn-borrar')
+                columnaBorrar.appendChild(botonBorrar)
+                fila.appendChild(columnaBorrar)
     
-                // Agregar la fila a la tabla
-                tablaLibros.appendChild(fila)
+                // Agregar la fila a tbody
+                tbody.appendChild(fila)
             })
+
         } catch (error) {
             console.error('Error al parsear el JSON:', error)
         }
     }
-    
     
     pulsarAltaLibro() {
         this.controlador.verVista(Vista.valtalibro) // Cambia a la vista para insertar un nuevo libro
