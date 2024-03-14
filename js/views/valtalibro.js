@@ -65,8 +65,6 @@ export class AltaLibro extends Vista {
             this.isbn.classList.remove('input-error')
             this.isbn.classList.add('input-correct')
         }
-    
-        console.log('¡Has pulsado el botón "Insertar Libro"!')
 
         // Construir el objeto con los atributos del formulario
         const obra = {
