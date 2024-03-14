@@ -34,13 +34,15 @@ export class AltaLibro extends Vista {
         const divErrores = document.getElementById('errores')
         divErrores.innerHTML = ''
         divErrores.style.display = 'none' // Ocultar el div de errores inicialmente
-
+    
+        let formularioValido = true // Variable para rastrear si el formulario es válido
+    
         // Realizar las validaciones
         if (this.titulo.value.trim().length < 4) {
             this.mostrarError('El título debe tener al menos 4 caracteres.')
             this.titulo.classList.add('input-error')
-        } 
-        else {
+            formularioValido = false // Marcar el formulario como inválido
+        } else {
             this.titulo.classList.remove('input-error')
             this.titulo.classList.add('input-correct')
         }
@@ -51,8 +53,8 @@ export class AltaLibro extends Vista {
         if (isNaN(anioNumerico) || anioNumerico < 1500 || anioNumerico > añoActual) {
             this.mostrarError('El año debe estar entre 1500 y ' + añoActual + '.')
             this.anio_publicacion.classList.add('input-error')
-        } 
-        else {
+            formularioValido = false // Marcar el formulario como inválido
+        } else {
             this.anio_publicacion.classList.remove('input-error')
             this.anio_publicacion.classList.add('input-correct')
         }
@@ -60,35 +62,37 @@ export class AltaLibro extends Vista {
         if (!/^\d{10}$/.test(this.isbn.value.trim())) {
             this.mostrarError('El ISBN debe tener exactamente 10 dígitos numéricos.')
             this.isbn.classList.add('input-error')
-        } 
-        else {
+            formularioValido = false // Marcar el formulario como inválido
+        } else {
             this.isbn.classList.remove('input-error')
             this.isbn.classList.add('input-correct')
         }
-
-        // Construir el objeto con los atributos del formulario
-        const obra = {
-            titulo: this.titulo.value.trim(),
-            anio_publicacion: this.anio_publicacion.value.trim(),
-            isbn: this.isbn.value.trim()
-        }
-
-        try {
-            // Insertar el libro
-            await this.restService.crearObra(obra)
-            console.log('Libro insertado exitosamente.')
-            
-            // Después de insertar el libro, actualizar la tabla de la vista ListarLibros
-            const listarLibros = this.controlador.vistas.get(Vista.vlistarlibros)
-            listarLibros.listar()
-
-            // Limpiar los campos del formulario
-            this.titulo.value = ''
-            this.anio_publicacion.value = ''
-            this.isbn.value = ''
-
-        } catch (error) {
-            console.error('Error al insertar el libro:', error)
+    
+        // Si el formulario es válido, intentar insertar el libro y cambiar de vista
+        if (formularioValido) {
+            try {
+                // Construir el objeto con los atributos del formulario
+                const obra = {
+                    titulo: this.titulo.value.trim(),
+                    anio_publicacion: this.anio_publicacion.value.trim(),
+                    isbn: this.isbn.value.trim()
+                }
+        
+                // Insertar el libro
+                await this.restService.crearObra(obra)
+                console.log('Libro insertado exitosamente.')
+        
+                // Después de insertar el libro, actualizar la tabla de la vista ListarLibros
+                const listarLibros = this.controlador.vistas.get(Vista.vlistarlibros)
+                listarLibros.listar()
+        
+                // Limpiar los campos del formulario
+                this.titulo.value = ''
+                this.anio_publicacion.value = ''
+                this.isbn.value = ''
+            } catch (error) {
+                console.error('Error al insertar el libro:', error)
+            }
         }
     }
 
@@ -108,6 +112,9 @@ export class AltaLibro extends Vista {
     } 
 
     pulsarIrLibros() {
-        this.controlador.verVista(Vista.vlistarlibros) // Cambia a la vista listar libros
+        // No cambiamos de vista si el botón está deshabilitado
+        if (!this.irLibros.disabled) {
+            this.controlador.verVista(Vista.vlistarlibros)
+        }
     }
 }   
