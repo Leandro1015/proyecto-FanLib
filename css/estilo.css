@@ -7,13 +7,33 @@ body {
 }
 
 #divPortada {
-    text-align: center;
-    padding: 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+#imagenPortada {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 #divInicio {
     text-align: center;
     padding: 20px;
+}
+
+#imagenLibro {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1; /* Para que esté detrás del contenido */
 }
 
 #divListarLibros,
